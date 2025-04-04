@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="form">
+        <div class="input-group">
+            <input type="text" id="email" placeholder="Email">
+            <div class="error-message"></div>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+            <div class="error-message"></div>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <a href="register.html">Register</a>
+    <a href="forgot-password.html">Forgot Password?</a>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            const foundUser = users.find(user => user.email === email); 
+
+            if (!foundUser) {
+                setError(emailInput, "Email not registered");
+            } else if (foundUser.password !== password) {
+                setError(passwordInput, "Incorrect password");
+            } else {
+                localStorage.setItem("logintoindex", foundUser.name);
+                alert("Login successful!");
+                window.location.href = "index.html";
+            }
+        });
+
+        function setError(element, message) {
+            let errorField = element.parentElement.querySelector('.error-message');
+            errorField.innerText = message;
+            element.classList.add('error');
+        }
+    </script>
+</body>
+</html>

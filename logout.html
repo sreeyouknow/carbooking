@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          header ul {
+        list-style-type: none;
+        display: flex;
+        background-color: black;
+        justify-content: space-evenly;
+        padding: 10px 0;
+        }
+        header ul a{
+        text-decoration: none;
+        color:white;
+        }
+        header ul a:hover{
+        background-color: white;
+        color: black;
+        padding: 8px 5px;
+        }
+        section h1{
+            text-align: center;
+        }
+        .para01{
+            background-color: #ccc;
+            margin: 20px;
+            border: #a8a8a8 1px solid;
+        }
+        .para01 h3{
+            padding:0 10px;
+        }
+        .para01 p{
+            padding: 20px;
+            line-height: normal;
+        }
+        button{
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<header>
+    <ul>
+      <li><a href="index.html">home</a></li>
+      <li><a href="create-ticket.html">Book-Ticket</a></li>
+      <li><a href="show-ticket.html">Show-Ticket</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </header>
+  <section>
+    <h1>Our Company</h1>
+    <div class="para01">
+        <h3>Our Mission</h3>
+        <p>Our mission is to provide high-quality, reliable, and innovative solutions that enhance the lives of our customers.
+             We are committed to delivering excellence through cutting-edge technology, 
+             exceptional service, and customer-focused strategies. By continuously improving our products and services,
+             we aim to create a positive impact on individuals and businesses worldwide.
+        </p>
+    </div>
+    <div class="para01">
+        <h3>Our Vission</h3>
+        <p>Our vision is to be a global leader in our industry, setting new standards for innovation and customer satisfaction. 
+            We aspire to build a future where technology and creativity come together to solve real-world problems. 
+            Through sustainable growth and ethical practices, we envision a world where our solutions empower people 
+            and businesses to achieve their full potential.
+        </p>
+    </div>
+    <div class="para01">
+        <h3>Our Servie</h3>
+        <p>We offer a wide range of services tailored to meet the diverse needs of our customers. 
+            From customized solutions to comprehensive support, we ensure that every client receives the best experience. 
+            Our services include professional consulting, product development, and customer support, all designed to provide 
+            efficiency, reliability, and satisfaction. 
+            We take pride in delivering excellence and building long-term relationships with our customers.
+        </p>
+    </div>
+  </section>
+<button onclick="logout()">Logout</button>
+<body>
+    <script>
+        function logout() {
+    localStorage.removeItem("logintoindex"); 
+    window.location.href = "login.html"; 
+}
+    </script>
+</body>
+</html>

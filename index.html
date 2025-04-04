@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <script>
+       
+    </script>
+</head>
+<body onload="loadUser()">
+  <header>
+    <ul>
+      <li><a href="index.html">home</a></li>
+      <li><a href="create-ticket.html">Book-Ticket</a></li>
+      <li><a href="show-ticket.html">Show-Ticket</a></li>
+      <li><a href="logout.html">Logout</a></li>
+    </ul>
+  </header>
+    <h2>Welcome, <span id="username"></span></h2>
+<style>
+  body{
+    margin: 0;
+    padding:0;
+  }
+  header ul {
+ 
+    list-style-type: none;
+    display: flex;
+    background-color: black;
+    justify-content: space-evenly;
+    padding: 10px 0;
+  }
+  header ul a{
+    text-decoration: none;
+    color:white;
+  }
+  header ul a:hover{
+    background-color: white;
+    color: black;
+    padding: 8px 5px;
+  }
+  .index-one{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .right{
+    width:50%;
+    justify-content: center;
+  }
+  .right h1{
+    text-align: center;
+    font-size: 3rem;
+    margin: 15vmax 0 0 0;
+  }
+  .right h1 span{
+    display: block;
+    font-size: 20px;
+    letter-spacing: 15px;
+  }
+  .right a{
+    background-color: black;
+    text-decoration: none;
+    color:white;
+    font-size:15px;
+    font-weight: 900;
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: absolute;
+    left: 20%;
+    bottom: 30%;
+  }
+  .left{
+    width:50%;
+  }
+  .left img{
+    height:80vh;
+    width: auto;
+  }
+</style>
+    <div class="index-one">
+      <div class="right">
+        <h1>Welcome to Ticket <span>Booking System</span></h1>
+        <a href="create-ticket.html">Go to book </a>
+      </div>
+      <div class="left">
+        <img src="carr.jpg" alt="car-booking">
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+     window.onload = function() {
+    var indexstore = localStorage.getItem("logintoindex");
+    if (indexstore) {
+        document.getElementById("username").innerText = indexstore;
+    } else {
+        window.location.href = "login.html"; 
+    }
+};
+
+
+
+    </script>
+</body>
+</html>

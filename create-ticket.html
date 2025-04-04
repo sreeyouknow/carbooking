@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Selection Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+  header ul {
+ 
+    list-style-type: none;
+    display: flex;
+    background-color: black;
+    justify-content: space-evenly;
+    padding: 10px 0;
+  }
+  header ul a{
+    text-decoration: none;
+    color:white;
+  }
+  header ul a:hover{
+    background-color: white;
+    color: black;
+    padding: 8px 5px;
+  }
+        section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 60%;
+            position: absolute;
+            left: 20%;
+            top: 20%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button{
+            background-color: black;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            border: none;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+          <li><a href="index.html">home</a></li>
+          <li><a href="create-ticket.html">Book-Ticket</a></li>
+          <li><a href="show-ticket.html">Show-Ticket</a></li>
+          <li><a href="logout.html">Logout</a></li>
+        </ul>
+      </header>
+    <section>
+        <form action="" id="form">
+            <div class="form-group">
+                <label for="car-name-select">Name</label>
+                <select name="Name" id="car-name-select">
+                    <option value="">Select Name</option>
+                    <option value="TATA">TATA</option>
+                    <option value="BMW">BMW</option>
+                    <option value="RR">RR</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="color-select">Color</label>
+                <select name="Color" id="color-select">
+                    <option value="">Select Color</option>
+                    <option value="Red">Red</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Black">Black</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="variant-select">Variant</label>
+                <select name="Variant" id="variant-select">
+                    <option value="">Select Variant</option>
+                    <option value="Base">Base</option>
+                    <option value="Mid">Mid</option>
+                    <option value="Top">Top</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="state-select">State</label>
+                <select name="State" id="state-select">
+                    <option value="">Select State</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city-select">City</label>
+                <select name="City" id="city-select">
+                    <option value="">Select City</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Mumbai">Mumbai</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <script>
+       var form = document.querySelector('#form');
+        var selects = form.querySelectorAll('select');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); 
+
+            let allSelected = true;
+            let newCar = {};
+
+            selects.forEach(select => {
+                if (!select.value) {
+                    allSelected = false;
+                } else {
+                    newCar[select.name] = select.value;
+                }
+            });
+
+            if (allSelected) {
+                let carlist = JSON.parse(localStorage.getItem("carlists")) || [];
+
+                if (!Array.isArray(carlist)) {
+                    carlist = [carlist];
+                }
+
+                carlist.push(newCar);
+                localStorage.setItem("carlists", JSON.stringify(carlist));
+
+                alert("Form submitted successfully!");
+                form.reset();
+            } else {
+                alert("Please select all fields");
+            }
+        });
+    </script>
+</body>
+</html>

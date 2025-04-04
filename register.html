@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Register</h2>
+    <form id="form">
+        <div class="input-group">
+            <input type="text" id="name" placeholder="Full Name">
+            <div class="error-message"></div>
+        </div>
+        <div class="input-group">
+            <input type="text" id="email" placeholder="Email">
+            <div class="error-message"></div>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="Password">
+            <div class="error-message"></div>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <a href="login.html">Already have an account? Login</a>
+
+    <script>
+        document.getElementById('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            let valid = true;
+
+            if (name === "") {
+                setError(nameInput, "Name is required");
+                valid = false;
+            } else {
+                setSuccess(nameInput);
+            }
+
+            if (email === "") {
+                setError(emailInput, "Email is required");
+                valid = false;
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                setError(emailInput, "Enter a valid email");
+                valid = false;
+            } else if (users.find(user => user.email === email)) {
+                setError(emailInput, "Email already exists");
+                valid = false;
+            } else {
+                setSuccess(emailInput);
+            }
+
+            if (password.length < 6) {
+                setError(passwordInput, "Password must be at least 6 characters long");
+                valid = false;
+            } else {
+                setSuccess(passwordInput);
+            }
+
+            if (valid) {
+                let newUser = { name, email, password };
+                users.push(newUser);
+                localStorage.setItem("users", JSON.stringify(users));
+
+                alert("Registered successfully!");
+                window.location.href = "login.html";
+            }
+        });
+
+        function setError(element, message) {
+            let errorField = element.parentElement.querySelector('.error-message');
+            errorField.innerText = message;
+            element.classList.add('error');
+        }
+
+        function setSuccess(element) {
+            let errorField = element.parentElement.querySelector('.error-message');
+            errorField.innerText = "";
+            element.classList.remove('error');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          header ul {
+            list-style-type: none;
+            display: flex;
+            background-color: black;
+            justify-content: space-evenly;
+            padding: 10px 0;
+            }
+            header ul a{
+            text-decoration: none;
+            color:white;
+            }
+            header ul a:hover{
+            background-color: white;
+            color: black;
+            padding: 8px 5px;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <ul>
+          <li><a href="index.html">home</a></li>
+          <li><a href="create-ticket.html">Book-Ticket</a></li>
+          <li><a href="show-ticket.html">Show-Ticket</a></li>
+          <li><a href="logout.html">Logout</a></li>
+        </ul>
+      </header>
+      <h1>Show Ticket</h1>
+      <section id="show">
+
+      </section>
+    <script>
+let carlist = JSON.parse(localStorage.getItem("carlists")) || [];
+
+if (!Array.isArray(carlist)) {
+    carlist = [carlist];
+}
+
+let show = document.getElementById("show");
+
+if (carlist.length > 0) {
+    show.innerHTML = "<h3>Selected Car Details:</h3>";
+
+    carlist.forEach(car => {
+        if (car && car.Name) {
+            show.innerHTML += `
+                <p><strong>Name:</strong> ${car.Name}</p>
+                <p><strong>Color:</strong> ${car.Color}</p>
+                <p><strong>Variant:</strong> ${car.Variant}</p>
+                <p><strong>State:</strong> ${car.State}</p>
+                <p><strong>City:</strong> ${car.City}</p>
+                <hr>
+            `;
+        }
+    });
+} else {
+    show.innerHTML = "<p>No car details found.</p>";
+}
+    </script>
+</body>
+</html>
